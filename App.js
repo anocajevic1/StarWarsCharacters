@@ -7,6 +7,7 @@ import Favorites from "./app/screens/MyFavoritesScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -16,6 +17,7 @@ export default class App extends Component {
     <Stack.Navigator>
       <Stack.Screen name="Home" component={WelcomeScreen} />
       <Stack.Screen name="Characters" component={CharacterList} />
+      <Stack.Screen name="Favorites" component={Favorites} />
     </Stack.Navigator>
   );
 

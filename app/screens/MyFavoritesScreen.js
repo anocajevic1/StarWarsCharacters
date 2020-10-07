@@ -1,12 +1,17 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, ScrollView } from "react-native";
+import { DataTable } from "react-native-paper";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-export default class CharacterListScreen extends Component {
+export default class MyFavoritesScreen extends Component {
   render() {
     return (
-      <View style={styles.center}>
-        <Text>These are my favorites</Text>
-      </View>
+      <ScrollView contentInsetAdjustmentBehavior="automatic">
+        <SafeAreaView>
+          {/* long content here */}
+          <Text>Favorite stuff here</Text>
+        </SafeAreaView>
+      </ScrollView>
     );
   }
 }
