@@ -1,21 +1,33 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import "react-native-gesture-handler";
+import React, { Component } from "react";
+import { StyleSheet, Text, View } from "react-native";
+import WelcomeScreen from "./app/screens/WelcomeScreen";
+import CharacterList from "./app/screens/CharacterListScreen";
+import Favorites from "./app/screens/MyFavoritesScreen";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+const Stack = createStackNavigator();
+const Drawer = createDrawerNavigator();
+
+export default class App extends Component {
+  createHomeStack = () => (
+    <Stack.Navigator>
+      <Stack.Screen name="Home" component={WelcomeScreen} />
+      <Stack.Screen name="Characters" component={CharacterList} />
+    </Stack.Navigator>
   );
-}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  render() {
+    return (
+      <NavigationContainer>
+        <Drawer.Navigator>
+          <Drawer.Screen name="Home" children={this.createHomeStack} />
+          <Drawer.Screen name="Characters" component={CharacterList} />
+          <Drawer.Screen name="Favorites" component={Favorites} />
+        </Drawer.Navigator>
+      </NavigationContainer>
+    );
+  }
+}
