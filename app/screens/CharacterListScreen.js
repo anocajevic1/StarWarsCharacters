@@ -49,7 +49,9 @@ export default class CharacterListScreen extends Component {
           data={this.state.characters.results}
           renderItem={({ item }) => (
             <TouchableWithoutFeedback
-              onPress={() => this.props.navigation.navigate("Details")}
+              onPress={() =>
+                this.props.navigation.navigate("Details", { item })
+              }
             >
               <View style={styles.row} key={item.created}>
                 <Text style={styles.text}> {item.name}</Text>
