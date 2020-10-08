@@ -15,6 +15,7 @@ import axios from "axios";
 export default class CharacterListScreen extends Component {
   state = {
     characters: [],
+    names: [],
   };
 
   constructor(props) {
@@ -22,9 +23,11 @@ export default class CharacterListScreen extends Component {
   }
 
   getCharacters() {
-    axios.get("https://swapi.dev/api/people/?_limit=20").then((response) => {
+    //uzela sam 20 da se ne mora skrolati puno :D
+    axios.get("https://swapi.dev/api/people").then((response) => {
       this.setState({ characters: response.data }, () => {
-        console.log(this.state.characters);
+        //console.log(this.state.characters);
+        //u results se nalaze imena i ostalo bitno o likovima
       });
     });
   }
@@ -40,6 +43,20 @@ export default class CharacterListScreen extends Component {
           title="View my favorites"
           onPress={() => this.props.navigation.navigate("Favorites")}
         ></Button>
+
+        <FlatList
+          style={styles.list}
+          data={this.state.characters.results}
+          renderItem={({ item }) => (
+            <TouchableWithoutFeedback
+              onPress={() => this.props.navigation.navigate("Details")}
+            >
+              <View style={styles.row} key={item.created}>
+                <Text style={styles.text}> {item.name}</Text>
+              </View>
+            </TouchableWithoutFeedback>
+          )}
+        />
       </SafeAreaView>
     );
   }
@@ -52,4 +69,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     textAlign: "center",
   },
+  text: {
+    fontSize: 30,
+  },
+  row: {},
 });

@@ -4,6 +4,7 @@ import { StyleSheet, Text, View } from "react-native";
 import WelcomeScreen from "./app/screens/WelcomeScreen";
 import CharacterList from "./app/screens/CharacterListScreen";
 import Favorites from "./app/screens/MyFavoritesScreen";
+import Details from "./app/screens/CharacterDetailsScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
@@ -18,6 +19,7 @@ export default class App extends Component {
       <Stack.Screen name="Home" component={WelcomeScreen} />
       <Stack.Screen name="Characters" component={CharacterList} />
       <Stack.Screen name="Favorites" component={Favorites} />
+      <Stack.Screen name="Details" component={Details} />
     </Stack.Navigator>
   );
 
