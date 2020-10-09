@@ -13,7 +13,6 @@ import { Provider } from "react-redux";
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 const store = configureStore();
-/*const persistedState = loadFromLocalStorage();
 
 function saveToLocalStorage(state) {
   try {
@@ -36,7 +35,8 @@ function loadFromLocalStorage() {
   }
 }
 
-store.subscribe(() => saveToLocalStorage(store.getState()));*/
+const persistedState = loadFromLocalStorage();
+store.subscribe(() => saveToLocalStorage(store.getState()));
 
 export default class App extends Component {
   createHomeStack = () => (
