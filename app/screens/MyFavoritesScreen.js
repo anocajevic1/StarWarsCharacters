@@ -1,18 +1,25 @@
 import React, { Component } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  ScrollView,
-  FlatList,
-  TouchableWithoutFeedback,
-  Button,
-  Alert,
-} from "react-native";
+import { StyleSheet, Text, View, FlatList, Alert } from "react-native";
 import { DataTable, IconButton } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { connect } from "react-redux";
+import { deleteFavorite } from "../actions/favorites";
 
-export default class MyFavoritesScreen extends Component {
+const mapStateToProps = (state) => {
+  //console.log(state);
+  return {
+    favorites: state.favoritesReducer.favoritesList,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  console.log(dispatch);
+  return {
+    delete: (key) => dispatch(deleteFavorite(key)),
+  };
+};
+
+class MyFavoritesScreen extends Component {
   state = {
     favorites: [
       {
@@ -26,12 +33,8 @@ export default class MyFavoritesScreen extends Component {
     ],
   };
 
-  removeFromFavorites(item) {
-    //ovdje ce se brisati iz flat liste
-    let arr = this.state.favorites;
-    let position = arr.indexOf(item);
-    arr.splice(position, 1);
-    this.setState({ favorites: arr });
+  componentDidMount() {
+    console.log(this.props);
   }
 
   render() {
@@ -40,7 +43,7 @@ export default class MyFavoritesScreen extends Component {
         <Text>My Favorite Characters</Text>
         <FlatList
           style={styles.list}
-          data={this.state.favorites}
+          data={this.props.favorites}
           renderItem={({ item }) => (
             <View style={styles.row} key={item.key}>
               <Text> {item.name}</Text>
@@ -58,7 +61,7 @@ export default class MyFavoritesScreen extends Component {
                       },
                       {
                         text: "OK",
-                        onPress: () => this.removeFromFavorites(item),
+                        onPress: () => console.log(this.props),
                       },
                     ],
                     { cancelable: false }
@@ -85,3 +88,5 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
 });
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyFavoritesScreen);

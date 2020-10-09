@@ -53,7 +53,7 @@ export default class CharacterListScreen extends Component {
                 this.props.navigation.navigate("Details", { item })
               }
             >
-              <View style={styles.row} key={item.created}>
+              <View style={styles.row} key={Math.random()}>
                 <Text style={styles.text}> {item.name}</Text>
               </View>
             </TouchableWithoutFeedback>

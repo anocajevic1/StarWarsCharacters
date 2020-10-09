@@ -1,8 +1,24 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { connect } from "react-redux";
+import { addFavorite } from "../actions/favorites";
 
-export default class CharacterDetailsScreen extends Component {
+const mapStateToProps = (state) => {
+  console.log(state);
+  return {
+    favorites: state.favoritesReducer.favoritesList,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  console.log(dispatch);
+  return {
+    add: (favorite) => dispatch(addFavorite(favorite)),
+  };
+};
+
+class CharacterDetailsScreen extends Component {
   componentDidMount() {
     const { state } = this.props;
     console.log(this.props);
@@ -21,7 +37,10 @@ export default class CharacterDetailsScreen extends Component {
         <Text> Mass: {this.props.route.params.item.mass}</Text>
         <Text> Skin color: {this.props.route.params.item.skin_color}</Text>
 
-        <Button title="Add to favorites"></Button>
+        <Button
+          title="Add to favorites"
+          onPress={() => this.props.add(this.props.route.params.item.name)}
+        ></Button>
       </View>
     );
   }
@@ -35,3 +54,8 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
 });
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CharacterDetailsScreen);

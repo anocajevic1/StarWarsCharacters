@@ -1,6 +1,5 @@
 import "react-native-gesture-handler";
 import React, { Component } from "react";
-import { StyleSheet, Text, View } from "react-native";
 import WelcomeScreen from "./app/screens/WelcomeScreen";
 import CharacterList from "./app/screens/CharacterListScreen";
 import Favorites from "./app/screens/MyFavoritesScreen";
@@ -8,10 +7,12 @@ import Details from "./app/screens/CharacterDetailsScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import { SafeAreaView } from "react-native-safe-area-context";
+import configureStore from "./app/store";
+import { Provider } from "react-redux";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
+const store = configureStore();
 
 export default class App extends Component {
   createHomeStack = () => (
@@ -25,13 +26,15 @@ export default class App extends Component {
 
   render() {
     return (
-      <NavigationContainer>
-        <Drawer.Navigator>
-          <Drawer.Screen name="Home" children={this.createHomeStack} />
-          <Drawer.Screen name="Characters" component={CharacterList} />
-          <Drawer.Screen name="Favorites" component={Favorites} />
-        </Drawer.Navigator>
-      </NavigationContainer>
+      <Provider store={store}>
+        <NavigationContainer>
+          <Drawer.Navigator>
+            <Drawer.Screen name="Home" children={this.createHomeStack} />
+            <Drawer.Screen name="Characters" component={CharacterList} />
+            <Drawer.Screen name="Favorites" component={Favorites} />
+          </Drawer.Navigator>
+        </NavigationContainer>
+      </Provider>
     );
   }
 }
