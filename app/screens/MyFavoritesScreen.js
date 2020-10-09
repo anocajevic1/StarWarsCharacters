@@ -47,7 +47,7 @@ class MyFavoritesScreen extends Component {
                       },
                       {
                         text: "OK",
-                        onPress: () => console.log(this.props),
+                        onPress: () => this.props.delete(item.key),
                       },
                     ],
                     { cancelable: false }
