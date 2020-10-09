@@ -21,6 +21,7 @@ function saveToLocalStorage(state) {
   } catch (e) {
     console.log(e);
     return undefined;
+    
   }
 }
 
