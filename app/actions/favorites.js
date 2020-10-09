@@ -7,5 +7,5 @@ export const addFavorite = (character) => ({
 
 export const deleteFavorite = (key) => ({
   type: DELETE_FAVORITE,
-  data: key,
+  key: key,
 });

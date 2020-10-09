@@ -24,14 +24,33 @@ export default class App extends Component {
     </Stack.Navigator>
   );
 
+  createCharactersStack = () => (
+    <Stack.Navigator>
+      <Stack.Screen name="Characters" component={CharacterList} />
+      <Stack.Screen name="Favorites" component={Favorites} />
+      <Stack.Screen name="Details" component={Details} />
+    </Stack.Navigator>
+  );
+  createFavoritesStack = () => (
+    <Stack.Navigator>
+      <Stack.Screen name="Favorites" component={Favorites} />
+    </Stack.Navigator>
+  );
+
   render() {
     return (
       <Provider store={store}>
         <NavigationContainer>
           <Drawer.Navigator>
             <Drawer.Screen name="Home" children={this.createHomeStack} />
-            <Drawer.Screen name="Characters" component={CharacterList} />
-            <Drawer.Screen name="Favorites" component={Favorites} />
+            <Drawer.Screen
+              name="Characters"
+              children={this.createCharactersStack}
+            />
+            <Drawer.Screen
+              name="Favorites"
+              children={this.createFavoritesStack}
+            />
           </Drawer.Navigator>
         </NavigationContainer>
       </Provider>

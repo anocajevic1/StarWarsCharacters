@@ -17,6 +17,7 @@ export default class WelcomeScreen extends Component {
         <Text>This is the home screen</Text>
         <Button
           title="View Characters"
+          style={styles.cta}
           onPress={() => this.props.navigation.navigate("Characters")}
         />
       </View>

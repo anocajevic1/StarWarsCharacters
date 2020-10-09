@@ -20,19 +20,6 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 class MyFavoritesScreen extends Component {
-  state = {
-    favorites: [
-      {
-        name: "banana",
-        key: 1,
-      },
-      {
-        name: "kivi",
-        key: 2,
-      },
-    ],
-  };
-
   componentDidMount() {
     console.log(this.props);
   }
@@ -40,7 +27,6 @@ class MyFavoritesScreen extends Component {
   render() {
     return (
       <SafeAreaView>
-        <Text>My Favorite Characters</Text>
         <FlatList
           style={styles.list}
           data={this.props.favorites}

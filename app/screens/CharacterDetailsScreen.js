@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, Button } from "react-native";
+import { StyleSheet, Text, View, Button, Alert } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { connect } from "react-redux";
 import { addFavorite } from "../actions/favorites";
@@ -39,7 +39,42 @@ class CharacterDetailsScreen extends Component {
 
         <Button
           title="Add to favorites"
-          onPress={() => this.props.add(this.props.route.params.item.name)}
+          onPress={() => {
+            // ovdje treba provjeriti nalazi li se vec u favoritima
+            let arr = this.props.favorites;
+            let char = this.props.route.params.item.name;
+            let found = false;
+            for (let i = 0; i < arr.length; i++) {
+              if (arr[i].name == char) {
+                found = true;
+                break;
+              }
+            }
+            if (!found) {
+              this.props.add(this.props.route.params.item.name);
+              Alert.alert(
+                "Added to favorites",
+                "This character has been added to your favorites",
+                [
+                  {
+                    text: "OK",
+                  },
+                ],
+                { cancelable: false }
+              );
+            } else {
+              Alert.alert(
+                "Already a favorite",
+                "This character is already in your favorites",
+                [
+                  {
+                    text: "OK",
+                  },
+                ],
+                { cancelable: false }
+              );
+            }
+          }}
         ></Button>
       </View>
     );
