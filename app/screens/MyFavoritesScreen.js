@@ -31,7 +31,7 @@ class MyFavoritesScreen extends Component {
           style={styles.list}
           data={this.props.favorites}
           renderItem={({ item }) => (
-            <View style={styles.row} key={item.key}>
+            <View style={styles.item} key={item.key}>
               <Text> {item.name}</Text>
               <IconButton
                 icon="delete"
@@ -69,9 +69,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     textAlign: "center",
   },
-  row: {
-    display: "flex",
-    flexDirection: "row",
+  item: {
+    flex: 1,
+    alignSelf: "stretch",
+    margin: 10,
+    alignItems: "center",
+    justifyContent: "center",
+    borderBottomWidth: 1,
+    borderBottomColor: "#eee",
   },
 });
 

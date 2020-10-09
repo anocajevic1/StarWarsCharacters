@@ -7,10 +7,50 @@ import {
   ScrollView,
   FlatList,
   TouchableWithoutFeedback,
+  TouchableOpacity,
 } from "react-native";
 import { DataTable } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 import axios from "axios";
+
+const styles = StyleSheet.create({
+  center: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    textAlign: "center",
+  },
+  text: {
+    fontSize: 20,
+  },
+  item: {
+    flex: 1,
+    alignSelf: "stretch",
+    margin: 10,
+    alignItems: "center",
+    justifyContent: "center",
+    borderBottomWidth: 1,
+    borderBottomColor: "#eee",
+  },
+  appButtonContainer: {
+    elevation: 8,
+    backgroundColor: "#3d7ea6",
+    borderRadius: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+    width: 200,
+    justifyContent: "center",
+    alignItems: "center",
+    marginLeft: "25%",
+  },
+  appButtonText: {
+    fontSize: 18,
+    color: "#fcdada",
+
+    alignSelf: "center",
+    textTransform: "uppercase",
+  },
+});
 
 export default class CharacterListScreen extends Component {
   state = {
@@ -39,11 +79,6 @@ export default class CharacterListScreen extends Component {
   render() {
     return (
       <SafeAreaView>
-        <Button
-          title="View my favorites"
-          onPress={() => this.props.navigation.navigate("Favorites")}
-        ></Button>
-
         <FlatList
           style={styles.list}
           data={this.state.characters.results}
@@ -53,26 +88,19 @@ export default class CharacterListScreen extends Component {
                 this.props.navigation.navigate("Details", { item })
               }
             >
-              <View style={styles.row} key={Math.random()}>
+              <View style={styles.item} key={Math.random()}>
                 <Text style={styles.text}> {item.name}</Text>
               </View>
             </TouchableWithoutFeedback>
           )}
         />
+        <TouchableOpacity
+          onPress={() => this.props.navigation.navigate("Favorites")}
+          style={styles.appButtonContainer}
+        >
+          <Text style={styles.appButtonText}>View favorites</Text>
+        </TouchableOpacity>
       </SafeAreaView>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  center: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    textAlign: "center",
-  },
-  text: {
-    fontSize: 30,
-  },
-  row: {},
-});

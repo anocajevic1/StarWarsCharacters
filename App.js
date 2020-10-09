@@ -13,27 +13,139 @@ import { Provider } from "react-redux";
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 const store = configureStore();
+/*const persistedState = loadFromLocalStorage();
+
+function saveToLocalStorage(state) {
+  try {
+    const serializedState = JSON.stringify(state);
+    localStorage.setItem("state", serializedState);
+  } catch (e) {
+    console.log(e);
+    return undefined;
+  }
+}
+
+function loadFromLocalStorage() {
+  try {
+    const serializedState = localStorage.getItem("state");
+    if (serializedState == null) return undefined;
+    return JSON.parse(serializedState);
+  } catch (e) {
+    console.log(e);
+    return undefined;
+  }
+}
+
+store.subscribe(() => saveToLocalStorage(store.getState()));*/
 
 export default class App extends Component {
   createHomeStack = () => (
     <Stack.Navigator>
-      <Stack.Screen name="Home" component={WelcomeScreen} />
-      <Stack.Screen name="Characters" component={CharacterList} />
-      <Stack.Screen name="Favorites" component={Favorites} />
-      <Stack.Screen name="Details" component={Details} />
+      <Stack.Screen
+        name="Home"
+        component={WelcomeScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Characters"
+        component={CharacterList}
+        options={{
+          headerStyle: {
+            backgroundColor: "#3d7ea6",
+          },
+          headerTintColor: "#fff",
+          headerTitleStyle: {
+            fontWeight: "bold",
+          },
+        }}
+      />
+      <Stack.Screen
+        name="Favorites"
+        component={Favorites}
+        options={{
+          headerStyle: {
+            backgroundColor: "#3d7ea6",
+          },
+          headerTintColor: "#fff",
+          headerTitleStyle: {
+            fontWeight: "bold",
+          },
+        }}
+      />
+      <Stack.Screen
+        name="Details"
+        component={Details}
+        options={{
+          headerStyle: {
+            backgroundColor: "#3d7ea6",
+          },
+          headerTintColor: "#fff",
+          headerTitleStyle: {
+            fontWeight: "bold",
+          },
+        }}
+      />
     </Stack.Navigator>
   );
 
   createCharactersStack = () => (
     <Stack.Navigator>
-      <Stack.Screen name="Characters" component={CharacterList} />
-      <Stack.Screen name="Favorites" component={Favorites} />
-      <Stack.Screen name="Details" component={Details} />
+      <Stack.Screen
+        name="Characters"
+        component={CharacterList}
+        options={{
+          headerStyle: {
+            backgroundColor: "#3d7ea6",
+          },
+          headerTintColor: "#fff",
+          headerTitleStyle: {
+            fontWeight: "bold",
+          },
+        }}
+      />
+      <Stack.Screen
+        name="Favorites"
+        component={Favorites}
+        options={{
+          headerStyle: {
+            backgroundColor: "#3d7ea6",
+          },
+          headerTintColor: "#fff",
+          headerTitleStyle: {
+            fontWeight: "bold",
+          },
+        }}
+      />
+      <Stack.Screen
+        name="Details"
+        component={Details}
+        options={{
+          headerStyle: {
+            backgroundColor: "#3d7ea6",
+          },
+          headerTintColor: "#fff",
+          headerTitleStyle: {
+            fontWeight: "bold",
+          },
+        }}
+      />
     </Stack.Navigator>
   );
   createFavoritesStack = () => (
     <Stack.Navigator>
-      <Stack.Screen name="Favorites" component={Favorites} />
+      <Stack.Screen
+        name="Favorites"
+        component={Favorites}
+        options={{
+          headerStyle: {
+            backgroundColor: "#3d7ea6",
+          },
+          headerTintColor: "#fff",
+          headerTitleStyle: {
+            fontWeight: "bold",
+          },
+        }}
+      />
     </Stack.Navigator>
   );
 

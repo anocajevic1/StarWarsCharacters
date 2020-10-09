@@ -27,7 +27,7 @@ class CharacterDetailsScreen extends Component {
   render() {
     return (
       <View style={styles.center}>
-        <Text>
+        <Text style={styles.title}>
           This is {this.props.route.params.item.name}'s details screen.
         </Text>
         <Text> Birth year: {this.props.route.params.item.birth_year}</Text>
@@ -83,10 +83,15 @@ class CharacterDetailsScreen extends Component {
 
 const styles = StyleSheet.create({
   center: {
-    flex: 1,
+    display: "flex",
     justifyContent: "center",
     alignItems: "center",
     textAlign: "center",
+  },
+  title: {
+    fontSize: 20,
+    alignSelf: "center",
+    fontWeight: "bold",
   },
 });
 
