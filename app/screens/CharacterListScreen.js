@@ -93,6 +93,7 @@ export default class CharacterListScreen extends Component {
               </View>
             </TouchableWithoutFeedback>
           )}
+          keyExtractor={(item, index) => index.toString()}
         />
         <TouchableOpacity
           onPress={() => this.props.navigation.navigate("Favorites")}
